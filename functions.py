@@ -1,4 +1,4 @@
-
+from functools import reduce
 import csv
 
 directorio=("D://Universidad3Curso//examen_python_EnriqueFerreCarbonell//ExamenPythonEnriqueFerre//winequality.csv")
@@ -40,14 +40,20 @@ def split(diccionario):
                        ,diccionario[i]["quality"]}
             dicWhite.update({"dato"+str(contwhite):dicRedaux})
             contwhite=contwhite+1
-            
+
     return dicRed, dicWhite
 
 
+def reduce(dic,string):
+    listares=[]
+    for i in dic:
+        if dic[i][string]==string:
+            listares.insert(dic[i][string])
+            print(listares)
+    return listares
 
-dicionario =read_data(directorio)
-dicRojo,dicBlanc =split(dicionario)
-print(len(dicRojo))
-print(len(dicBlanc))
+    
+
+
 
 
