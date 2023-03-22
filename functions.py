@@ -22,21 +22,32 @@ def read_data(fichero):
 def split(diccionario):
 
     dicRed={}
+    contred=1
+    contwhite=1
     dicWhite={}
     for i in diccionario:
         if diccionario[i]["type"] == "red":
-            print (diccionario[i])
             diccionario[i].pop("type")
-            dicRed.update(diccionario[i])
-        else:
+            dicRedaux={ diccionario[i]["fixed acidity"],diccionario[i]["volatile acidity"],diccionario[i]["citric acidity"],diccionario[i]["residual sugar"],diccionario[i]["chlorides"],
+                       diccionario[i]["free sulfur dioxide"],diccionario[i]["total sulfur dioxide"],diccionario[i]["density"],diccionario[i]["PH"],diccionario[i]["sulphates"],diccionario[i]["alcohol"]
+                       ,diccionario[i]["quality"]}
+            dicRed.update({"dato"+str(contred):dicRedaux})
+            contred=contred+1
+        elif diccionario[i]["type"] == "white":
             diccionario[i].pop("type")
-            dicWhite.update(diccionario[i])
+            dicRedaux={ diccionario[i]["fixed acidity"],diccionario[i]["volatile acidity"],diccionario[i]["citric acidity"],diccionario[i]["residual sugar"],diccionario[i]["chlorides"],
+                       diccionario[i]["free sulfur dioxide"],diccionario[i]["total sulfur dioxide"],diccionario[i]["density"],diccionario[i]["PH"],diccionario[i]["sulphates"],diccionario[i]["alcohol"]
+                       ,diccionario[i]["quality"]}
+            dicWhite.update({"dato"+str(contwhite):dicRedaux})
+            contwhite=contwhite+1
+            
     return dicRed, dicWhite
 
 
 
 dicionario =read_data(directorio)
 dicRojo,dicBlanc =split(dicionario)
-print(dicRojo)
+print(len(dicRojo))
+print(len(dicBlanc))
 
 
