@@ -1,9 +1,17 @@
 
-def read_data(fichero):
-    f = open(fichero+".csv", mode="rt", encoding="utf-8")
-    lista_lineas = f.readlines()
-    mayor=lista_lineas[0]
-    for i in range(len(lista_lineas)):
-        print("Lista de líneas leídas: ", lista_lineas[i])
+import csv
 
-read_data("winequality")
+
+with open("winequality.csv",'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+
+f = open("winequality.csv", mode="rt", encoding="utf-8")
+lista_lineas = f.readlines()
+    
+for i in range(len(lista_lineas)):
+        
+    print("Lista de líneas leídas: ", lista_lineas[i])
+        
+f.close()
